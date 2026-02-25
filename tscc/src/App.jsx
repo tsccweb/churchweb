@@ -1,45 +1,58 @@
-﻿import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { AuthProvider } from './context/AuthContext';
-import { ThemeProvider } from './context/ThemeContext';
+﻿import { useEffect } from 'react'
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
+import { AuthProvider } from './context/AuthContext'
+import { ThemeProvider } from './context/ThemeContext'
+import { supabase } from './supabase' // <-- import Supabase client
 
 // Layouts
-import PublicLayout from './layouts/PublicLayout';
-import AdminLayout from './layouts/AdminLayout';
+import PublicLayout from './layouts/PublicLayout'
+import AdminLayout from './layouts/AdminLayout'
 
 // Public Pages
-import Home from './pages/public/Home';
-import About from './pages/public/About';
-import Ministries from './pages/public/Ministries';
-import MinistryDetail from './pages/public/MinistryDetail';
-import Events from './pages/public/Events';
-import EventDetail from './pages/public/EventDetail';
-import Donate from './pages/public/Donate';
-import PayPalSuccess from './pages/public/PayPalSuccess';
-import Contact from './pages/public/Contact';
+import Home from './pages/public/Home'
+import About from './pages/public/About'
+import Ministries from './pages/public/Ministries'
+import MinistryDetail from './pages/public/MinistryDetail'
+import Events from './pages/public/Events'
+import EventDetail from './pages/public/EventDetail'
+import Donate from './pages/public/Donate'
+import PayPalSuccess from './pages/public/PayPalSuccess'
+import Contact from './pages/public/Contact'
 
 // Admin Pages
-import AdminLogin from './pages/admin/Login';
-import AdminDashboard from './pages/admin/Dashboard';
-import AdminHeroImages from './pages/admin/HeroImages';
-import AdminSectionHeroImages from './pages/admin/SectionHeroImages';
-import AdminEvents from './pages/admin/Events';
-import AdminMinistries from './pages/admin/Ministries';
-import AdminDonations from './pages/admin/Donations';
-import AdminMessages from './pages/admin/Messages';
-import AdminNewsletter from './pages/admin/Newsletter';
-import AdminGallery from './pages/admin/Gallery';
-import AdminUsers from './pages/admin/Users';
+import AdminLogin from './pages/admin/Login'
+import AdminDashboard from './pages/admin/Dashboard'
+import AdminHeroImages from './pages/admin/HeroImages'
+import AdminSectionHeroImages from './pages/admin/SectionHeroImages'
+import AdminEvents from './pages/admin/Events'
+import AdminMinistries from './pages/admin/Ministries'
+import AdminDonations from './pages/admin/Donations'
+import AdminMessages from './pages/admin/Messages'
+import AdminNewsletter from './pages/admin/Newsletter'
+import AdminGallery from './pages/admin/Gallery'
+import AdminUsers from './pages/admin/Users'
 
 // Components
-import ProtectedRoute from './components/ProtectedRoute';
-import ScrollToTop from './components/ScrollToTop';
+import ProtectedRoute from './components/ProtectedRoute'
+import ScrollToTop from './components/ScrollToTop'
 
 // Styles
-import './styles/variables.css';
-import './styles/animations.css';
-import './styles/components.css';
+import './styles/variables.css'
+import './styles/animations.css'
+import './styles/components.css'
 
 function App() {
+  // 👇 Supabase fetch inside useEffect
+  useEffect(() => {
+    async function getUsers() {
+      const { data, error } = await supabase.from('users').select('*')
+      if (error) console.error('Supabase error:', error)
+      else console.log('Supabase data:', data)
+    }
+
+    getUsers()
+  }, []) // empty array = run once on load
+
   return (
     <ThemeProvider>
       <AuthProvider>
@@ -86,7 +99,7 @@ function App() {
         </Router>
       </AuthProvider>
     </ThemeProvider>
-  );
+  )
 }
 
-export default App;
+export default App
