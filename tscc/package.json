@@ -1,0 +1,38 @@
+{
+  "name": "@tscc/resurrection-frontend",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "The Shepherds Community Centre Resurrection - Frontend",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@paypal/checkout-server-sdk": "^1.0.3",
+    "@paypal/paypal-js": "^9.3.0",
+    "@stripe/react-stripe-js": "^5.6.0",
+    "@stripe/stripe-js": "^8.8.0",
+    "axios": "^1.7.0",
+    "framer-motion": "^11.0.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-router-dom": "^7.0.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.1",
+    "eslint": "^9.39.0",
+    "eslint-plugin-react": "^7.34.0",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "eslint-plugin-react-refresh": "^0.4.3",
+    "laravel-vite-plugin": "^2.0.0",
+    "sharp": "^0.34.5",
+    "vite": "^7.0.7"
+  }
+}
